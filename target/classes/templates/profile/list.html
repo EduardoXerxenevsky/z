@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <title>Todos os Perfis</title>
+    <style>
+        .online::before {
+            content: "\25CF";
+            color: green;
+        }
+
+        .offline::before {
+            content: "\25CF";
+            color: gray;
+        }
+
+        .profile-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-custom {
+            background-color: #26a69a;
+        }
+
+        .btn-custom:hover {
+            background-color: #00796b;
+        }
+
+        .logo {
+            font-family: 'Special Alphabets', sans-serif;
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="teal lighten-2">
+    <div class="container">
+        <div class="logo">𝕐</div>
+        <h1 class="white-text">Todos os Perfis</h1>
+        <a href="/" class="btn btn-custom">Voltar</a>
+        <div th:each="profile : ${profiles}" class="card-panel white profile-container">
+            <div class="profile-info">
+                <h4 th:text="${profile.name}" class="blue-text text-darken-2"></h4>
+                <span th:class="${profile.online} ? 'online' : 'offline'"></span>
+            </div>
+            <h6 th:text="${profile.description}"></h6>
+            <h6 th:text="${profile.posts}" class="blue-text text-darken-3"></h6>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
